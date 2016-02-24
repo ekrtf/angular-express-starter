@@ -1,7 +1,5 @@
 #!/bin/env node
 
-'use strict';
-
 import express from 'express';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
@@ -9,11 +7,11 @@ import path from 'path';
 
 import index from './routers/index';
 
-const CLIENT_PATH = path.resolve(__dirname, '../client');
+const DIST_PATH = path.resolve(__dirname, '../dist');
 
 function Server() {
-    this.ipAddress = 'localhost';
-    this.port = '3000';
+    this.ipAddress = process.env.port || 'localhost';
+    this.port = process.env.ip || '3000';
     this.server = express();
 }
 
@@ -21,7 +19,7 @@ Server.prototype.setup = function() {
     this.server.use(morgan('combined'));
     this.server.use(bodyParser.json());
     this.server.use(bodyParser.urlencoded({ extended: false }));
-    this.server.use(express.static(CLIENT_PATH));
+    this.server.use(express.static(DIST_PATH));
 };
 
 Server.prototype.loadRoutes = function() {
@@ -34,10 +32,8 @@ Server.prototype.init = function() {
 };
 
 Server.prototype.start = function() {
-    var self = this;
-
-    self.server.listen(self.port, self.ipAddress, () => {
-        console.log(`Server running on ${ self.ipAddress }:${ self.port }`);
+    this.server.listen(this.port, this.ipAddress, () => {
+        console.log(`Server running on ${ this.ipAddress }:${ this.port }`);
     });
 };
 
