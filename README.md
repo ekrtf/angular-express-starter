@@ -1,6 +1,8 @@
 Angular webapp starter
 ======================
 
+[![Build Status](https://travis-ci.org/ekrtf/angular-express-starter.svg?branch=master)](https://travis-ci.org/ekrtf/angular-express-starter)
+
 ## Idea
 
 Yet another angular starter kit? Yes... but hang on.
