@@ -4,28 +4,44 @@
   "description": "starter kit for angular webapp with express server",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/ekrtf/angular-express-starter.git"
   },
   "scripts": {
-    "prestart": "node util/build.js",
-    "start": "node --harmony server"
+    "justdoit": "npm run clean && npm install && npm run build && npm run start",
+    "start": "node --harmony server",
+    "lint": "jshint --exclude ./node_modules .",
+    "prebuild": "mkdir dist",
+    "build": "npm run build:scripts && npm run build:style && npm run build:markup",
+    "build:scripts": "browserify client/index.js -o dist/bundle.js",
+    "build:style": "node-sass client/index.scss -o ./dist",
+    "build:markup": "cd client && find . -name '*.html' | cpio -pdm ../dist && cd ..",
+    "postbuild": "cd dist && rm -rf node_modules && cd ..",
+    "clean": "npm run clean:dist && npm run clean:node_modules",
+    "clean:dist": "rm -rf dist",
+    "clean:node_modules": "rm -rf node_modules"
+  },
+  "jshintConfig": {
+     "esversion": 6
   },
   "engines": {
     "node": ">=5.0.0",
     "npm": "^3.3.6"
   },
   "dependencies": {
-    "angular": "^1.5.0",
-    "angular-ui-router": "^0.2.18",
+    "angular": "~1.5.0",
+    "angular-ui-router": "~0.2.18",
     "babel": "~6.5.2",
     "body-parser": "~1.15.0",
     "express": "~4.13.4",
     "morgan": "~1.7.0",
-    "path": "~0.12.7",
-    "shelljs": "^0.6.0"
+    "path": "~0.12.7"
   },
   "devDependencies": {
-    "babel-preset-es2015": "~6.5.0"
+    "babel-preset-es2015": "~6.5.0",
+    "browserify": "~13.0.0",
+    "jshint": "~2.9.1",
+    "node-sass": "^3.4.2",
+    "shelljs": "~0.6.0"
   },
   "author": "Emile Kratiroff",
   "license": "MIT"
