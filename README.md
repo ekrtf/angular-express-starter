@@ -29,8 +29,7 @@ Angular webapp starter
 ├── server                      # Express server
 |   ├── index.js                # for babel to do its magic
 |   ├── server.js               # main server file
-|   └── routers                 # express routers - main logic goes here
-|       └── index.js            # main routes - separate the concerns into several files if needed
+|   └── routes.js               # express routers - main logic goes here
 ├── package.json                # project manifest - where you'll find all the build scripts
 └── LICENSE                     # all yours
 ```
