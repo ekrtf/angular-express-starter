@@ -1,2 +1,10 @@
+#!/bin/env node
+
+'use strict';
+
 require('babel-core/register');
-require('./server.js');
+
+var Server = require('./server.js');
+var instance = new Server();
+instance.init();
+instance.start();

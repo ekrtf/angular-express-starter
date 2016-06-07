@@ -1,13 +1,15 @@
-#!/bin/env node
+'use strict';
 
 import express from 'express';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import path from 'path';
 
-import index from './routers/index';
+import createRouter from './routes';
 
 const DIST_PATH = path.resolve(__dirname, '../dist');
+
+module.exports = Server;
 
 function Server() {
     this.ipAddress = process.env.port || 'localhost';
@@ -23,7 +25,8 @@ Server.prototype.setup = function() {
 };
 
 Server.prototype.loadRoutes = function() {
-    this.server.use('/', index);
+    const router = createRouter(express, path);
+    this.server.use('/', router);
 };
 
 Server.prototype.init = function() {
@@ -36,7 +39,3 @@ Server.prototype.start = function() {
         console.log(`Server running on ${ this.ipAddress }:${ this.port }`);
     });
 };
-
-var server = new Server();
-server.init();
-server.start();

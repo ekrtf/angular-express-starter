@@ -3,11 +3,6 @@ Angular webapp starter
 
 [![Build Status](https://travis-ci.org/ekrtf/angular-express-starter.svg?branch=master)](https://travis-ci.org/ekrtf/angular-express-starter)
 
-## Idea
-
-Yet another angular starter kit? Yes... but hang on.
-For this one let's stop using bower and gulp, npm does it all!
-
 ## Stack
 
 | Frontend   | Backend |
@@ -42,6 +37,6 @@ For this one let's stop using bower and gulp, npm does it all!
 
 ## Acknowledgement
 
-Inspired by [Keith Circle's article] on how to stop using build systems.
+Inspired by [Keith Circle's article] on how to stop using build systems for small projects.
 
 [Keith Circle's article]: http://blog.keithcirkel.co.uk/why-we-should-stop-using-grunt/
